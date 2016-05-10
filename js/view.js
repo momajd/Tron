@@ -23,7 +23,7 @@ View.KEYS = {
 
 View.prototype.handleKeyEvent = function (event) {
   if (View.KEYS[event.keyCode]) {
-    this.board.bike.turn(View.KEYS[event.keyCode]);
+    this.board.player1.turn(View.KEYS[event.keyCode]);
   } else {
     // ignore other keys, or maybe have pause button?
   }
@@ -45,8 +45,8 @@ View.prototype.setupGrid = function () {
 };
 
 View.prototype.step = function () {
-  if (this.board.bike.alive) {
-    this.board.bike.move();
+  if (this.board.player1.alive) {
+    this.board.player1.move();
     this.render();
   } else {
     // TODO display winner with CSS instead of alert
@@ -56,7 +56,7 @@ View.prototype.step = function () {
 };
 
 View.prototype.render = function () {
-  this.updateClasses(this.board.bike.segments, "bike");
+  this.updateClasses(this.board.player1.segments, "bike");
 };
 
 View.prototype.updateClasses = function (coords, className) {
@@ -72,7 +72,7 @@ View.prototype.updateClasses = function (coords, className) {
 
 // TODO
 // View.prototype.checkWinner = function() {
-//   if (!this.board.bike.alive) {
+//   if (!this.board.player1.alive) {
 //     alert("You Lost!!");
 //   }
 // };

@@ -3,7 +3,7 @@ var Bike = require("./bike");
 var Board = function (dim) {
   this.dim = dim;
 
-  this.bike = new Bike(this);
+  this.player1 = new Bike(this);
 };
 
 Board.BLANK_SYMBOL = ".";
@@ -31,7 +31,7 @@ Board.prototype.validPosition = function (coord) {
 // Board.prototype.render = function () {
 //   var grid = Board.blankGrid(this.dim);
 //
-//   this.bike.segments.forEach(function (segment) {
+//   this.player1.segments.forEach(function (segment) {
 //     grid[segment.i][segment.j] = Bike.SYMBOL;
 //   });
 //

@@ -81,7 +81,7 @@
 	
 	View.prototype.handleKeyEvent = function (event) {
 	  if (View.KEYS[event.keyCode]) {
-	    this.board.bike.turn(View.KEYS[event.keyCode]);
+	    this.board.player1.turn(View.KEYS[event.keyCode]);
 	  } else {
 	    // ignore other keys, or maybe have pause button?
 	  }
@@ -103,8 +103,8 @@
 	};
 	
 	View.prototype.step = function () {
-	  if (this.board.bike.alive) {
-	    this.board.bike.move();
+	  if (this.board.player1.alive) {
+	    this.board.player1.move();
 	    this.render();
 	  } else {
 	    // TODO display winner with CSS instead of alert
@@ -114,7 +114,7 @@
 	};
 	
 	View.prototype.render = function () {
-	  this.updateClasses(this.board.bike.segments, "bike");
+	  this.updateClasses(this.board.player1.segments, "bike");
 	};
 	
 	View.prototype.updateClasses = function (coords, className) {
@@ -130,7 +130,7 @@
 	
 	// TODO
 	// View.prototype.checkWinner = function() {
-	//   if (!this.board.bike.alive) {
+	//   if (!this.board.player1.alive) {
 	//     alert("You Lost!!");
 	//   }
 	// };
@@ -259,7 +259,7 @@
 	var Board = function (dim) {
 	  this.dim = dim;
 	
-	  this.bike = new Bike(this);
+	  this.player1 = new Bike(this);
 	};
 	
 	Board.BLANK_SYMBOL = ".";
@@ -287,7 +287,7 @@
 	// Board.prototype.render = function () {
 	//   var grid = Board.blankGrid(this.dim);
 	//
-	//   this.bike.segments.forEach(function (segment) {
+	//   this.player1.segments.forEach(function (segment) {
 	//     grid[segment.i][segment.j] = Bike.SYMBOL;
 	//   });
 	//
