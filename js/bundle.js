@@ -107,7 +107,9 @@
 	    this.board.bike.move();
 	    this.render();
 	  } else {
-	    // TODO message for losing
+	    // TODO display winner with CSS instead of alert
+	    // alert("come on man");
+	    window.clearInterval(this.intervalId);
 	  }
 	};
 	
@@ -126,6 +128,7 @@
 	  });
 	};
 	
+	// TODO
 	// View.prototype.checkWinner = function() {
 	//   if (!this.board.bike.alive) {
 	//     alert("You Lost!!");

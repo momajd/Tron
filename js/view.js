@@ -49,7 +49,9 @@ View.prototype.step = function () {
     this.board.bike.move();
     this.render();
   } else {
-    // TODO message for losing
+    // TODO display winner with CSS instead of alert
+    // alert("come on man");
+    window.clearInterval(this.intervalId);
   }
 };
 
@@ -68,6 +70,7 @@ View.prototype.updateClasses = function (coords, className) {
   });
 };
 
+// TODO
 // View.prototype.checkWinner = function() {
 //   if (!this.board.bike.alive) {
 //     alert("You Lost!!");
