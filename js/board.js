@@ -8,7 +8,7 @@ var Board = function (dim) {
 
 Board.BLANK_SYMBOL = ".";
 
-Board.blankGrid = function (dim) {
+Board.prototype.blankGrid = function (dim) {
   var grid = [];
 
   for (var i = 0; i < dim; i++) {
@@ -21,17 +21,24 @@ Board.blankGrid = function (dim) {
   grid.push(row);
 };
 
-Board.prototype.render = function () {
-  var grid = Board.blankGrid(this.dim);
-
-  this.bike.segments.forEach(function (segment) {
-    grid[segment.i][segment.j] = Bike.SYMBOL;
-  });
-
-  // join the grid into a big string
-  grid.map(function (row) {
-    return row.join("");
-  }).join("\n");
+Board.prototype.validPosition = function (coord) {
+  return (coord.i > 0 && coord.i < this.dim) &&
+         (coord.j > 0 && coord.j < this.dim);
 };
+
+
+// TODO remove if not being used
+// Board.prototype.render = function () {
+//   var grid = Board.blankGrid(this.dim);
+//
+//   this.bike.segments.forEach(function (segment) {
+//     grid[segment.i][segment.j] = Bike.SYMBOL;
+//   });
+//
+//   // join the grid into a big string
+//   grid.map(function (row) {
+//     return row.join("");
+//   }).join("\n");
+// };
 
 module.exports = Board;

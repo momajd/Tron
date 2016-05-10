@@ -21,8 +21,9 @@ var Bike = function (board) {
   this.dir = "W";
   this.turning = false;
   this.board = board;
+  this.alive = true;
 
-  var start = new Coord(Math.floor(board.dim/2), Math.floor(board.dim/4));
+  var start = new Coord(Math.floor(board.dim/2), Math.floor(3 * board.dim/4));
   this.segments = [start];
 };
 
@@ -51,16 +52,45 @@ Bike.prototype.head = function () {
 };
 
 Bike.prototype.isValid = function() {
-  //
+  var head = this.head();
+
+  if (!this.board.validPosition(head)) {
+    return false;
+  }
+
+  // check if bike runs into itself
+  for (var i = 0; i < this.segments.length - 1; i++) {
+    if (this.segments[i].equals(head)) {
+      return false;
+    }
+  }
+  return true;
 };
+
+// USE WHEN CHECKING COLLISIONS WITH OTHER PLAYER
+// Bike.prototype.segmentsContain = function (coord) {
+//   var contains = false;
+//   this.segments.forEach(function(segment) {
+//     if (segment.equals(coord) ) {
+//       contains = true;
+//     }
+//   });
+//   return contains;
+// };
+
+// Bike.prototype.checkCollision = function() {
+//   var head = this.head();
+//   TODO
+// };
 
 Bike.prototype.move = function () {
   var newCoord = this.head().plus(Bike.DIFFS[this.dir]);
   this.segments.push(newCoord);
 
   this.turning = false;
-
-  // TODO check if collision
+  if (!this.isValid() ) {
+    this.alive = false;
+  }
 };
 
 Bike.prototype.turn = function (dir) {

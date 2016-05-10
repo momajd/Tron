@@ -45,7 +45,7 @@ View.prototype.setupGrid = function () {
 };
 
 View.prototype.step = function () {
-  if (this.board.bike.segments.length > 0) {
+  if (this.board.bike.alive) {
     this.board.bike.move();
     this.render();
   } else {
@@ -67,5 +67,11 @@ View.prototype.updateClasses = function (coords, className) {
     self.$li.eq(flatCoord).addClass(className);
   });
 };
+
+// View.prototype.checkWinner = function() {
+//   if (!this.board.bike.alive) {
+//     alert("You Lost!!");
+//   }
+// };
 
 module.exports = View;

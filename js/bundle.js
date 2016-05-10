@@ -103,7 +103,7 @@
 	};
 	
 	View.prototype.step = function () {
-	  if (this.board.bike.segments.length > 0) {
+	  if (this.board.bike.alive) {
 	    this.board.bike.move();
 	    this.render();
 	  } else {
@@ -125,6 +125,12 @@
 	    self.$li.eq(flatCoord).addClass(className);
 	  });
 	};
+	
+	// View.prototype.checkWinner = function() {
+	//   if (!this.board.bike.alive) {
+	//     alert("You Lost!!");
+	//   }
+	// };
 	
 	module.exports = View;
 
@@ -156,8 +162,9 @@
 	  this.dir = "W";
 	  this.turning = false;
 	  this.board = board;
+	  this.alive = true;
 	
-	  var start = new Coord(Math.floor(board.dim/2), Math.floor(board.dim/4));
+	  var start = new Coord(Math.floor(board.dim/2), Math.floor(3 * board.dim/4));
 	  this.segments = [start];
 	};
 	
@@ -186,16 +193,45 @@
 	};
 	
 	Bike.prototype.isValid = function() {
-	  //
+	  var head = this.head();
+	
+	  if (!this.board.validPosition(head)) {
+	    return false;
+	  }
+	
+	  // check if bike runs into itself
+	  for (var i = 0; i < this.segments.length - 1; i++) {
+	    if (this.segments[i].equals(head)) {
+	      return false;
+	    }
+	  }
+	  return true;
 	};
+	
+	// USE WHEN CHECKING COLLISIONS WITH OTHER PLAYER
+	// Bike.prototype.segmentsContain = function (coord) {
+	//   var contains = false;
+	//   this.segments.forEach(function(segment) {
+	//     if (segment.equals(coord) ) {
+	//       contains = true;
+	//     }
+	//   });
+	//   return contains;
+	// };
+	
+	// Bike.prototype.checkCollision = function() {
+	//   var head = this.head();
+	//   TODO
+	// };
 	
 	Bike.prototype.move = function () {
 	  var newCoord = this.head().plus(Bike.DIFFS[this.dir]);
 	  this.segments.push(newCoord);
 	
 	  this.turning = false;
-	
-	  // TODO check if collision
+	  if (!this.isValid() ) {
+	    this.alive = false;
+	  }
 	};
 	
 	Bike.prototype.turn = function (dir) {
@@ -225,7 +261,7 @@
 	
 	Board.BLANK_SYMBOL = ".";
 	
-	Board.blankGrid = function (dim) {
+	Board.prototype.blankGrid = function (dim) {
 	  var grid = [];
 	
 	  for (var i = 0; i < dim; i++) {
@@ -238,18 +274,25 @@
 	  grid.push(row);
 	};
 	
-	Board.prototype.render = function () {
-	  var grid = Board.blankGrid(this.dim);
-	
-	  this.bike.segments.forEach(function (segment) {
-	    grid[segment.i][segment.j] = Bike.SYMBOL;
-	  });
-	
-	  // join the grid into a big string
-	  grid.map(function (row) {
-	    return row.join("");
-	  }).join("\n");
+	Board.prototype.validPosition = function (coord) {
+	  return (coord.i > 0 && coord.i < this.dim) &&
+	         (coord.j > 0 && coord.j < this.dim);
 	};
+	
+	
+	// TODO remove if not being used
+	// Board.prototype.render = function () {
+	//   var grid = Board.blankGrid(this.dim);
+	//
+	//   this.bike.segments.forEach(function (segment) {
+	//     grid[segment.i][segment.j] = Bike.SYMBOL;
+	//   });
+	//
+	//   // join the grid into a big string
+	//   grid.map(function (row) {
+	//     return row.join("");
+	//   }).join("\n");
+	// };
 	
 	module.exports = Board;
 
