@@ -3,7 +3,7 @@ var Board = require('./board');
 var View = function($el) {
   this.$el = $el;
 
-  this.board = new Board(100);
+  this.board = new Board(80);
   this.setupGrid();
 
   this.intervalId = window.setInterval(
@@ -45,8 +45,9 @@ View.prototype.setupGrid = function () {
 };
 
 View.prototype.step = function () {
-  if (this.board.player1.alive) {
+  if (this.board.player1.alive && this.board.computer.alive) {
     this.board.player1.move();
+    this.board.computer.move();
     this.render();
   } else {
     // TODO display winner with CSS instead of alert
@@ -56,11 +57,12 @@ View.prototype.step = function () {
 };
 
 View.prototype.render = function () {
-  this.updateClasses(this.board.player1.segments, "bike");
+  // debugger;
+  this.updateClasses(this.board.player1.segments, "player");
+  this.updateClasses(this.board.computer.segments, "computer");
 };
 
 View.prototype.updateClasses = function (coords, className) {
-  this.$li.filter("." + className).removeClass();
 
   // find the index of each coord that will be in the jQuery object
   var self = this;
@@ -73,7 +75,7 @@ View.prototype.updateClasses = function (coords, className) {
 // TODO
 // View.prototype.checkWinner = function() {
 //   if (!this.board.player1.alive) {
-//    
+//
 //   }
 // };
 

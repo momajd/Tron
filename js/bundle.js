@@ -61,7 +61,7 @@
 	var View = function($el) {
 	  this.$el = $el;
 	
-	  this.board = new Board(100);
+	  this.board = new Board(80);
 	  this.setupGrid();
 	
 	  this.intervalId = window.setInterval(
@@ -103,8 +103,9 @@
 	};
 	
 	View.prototype.step = function () {
-	  if (this.board.player1.alive) {
+	  if (this.board.player1.alive && this.board.computer.alive) {
 	    this.board.player1.move();
+	    this.board.computer.move();
 	    this.render();
 	  } else {
 	    // TODO display winner with CSS instead of alert
@@ -114,11 +115,12 @@
 	};
 	
 	View.prototype.render = function () {
-	  this.updateClasses(this.board.player1.segments, "bike");
+	  // debugger;
+	  this.updateClasses(this.board.player1.segments, "player");
+	  this.updateClasses(this.board.computer.segments, "computer");
 	};
 	
 	View.prototype.updateClasses = function (coords, className) {
-	  this.$li.filter("." + className).removeClass();
 	
 	  // find the index of each coord that will be in the jQuery object
 	  var self = this;
@@ -131,7 +133,7 @@
 	// TODO
 	// View.prototype.checkWinner = function() {
 	//   if (!this.board.player1.alive) {
-	//    
+	//
 	//   }
 	// };
 	
@@ -178,18 +180,16 @@
 	  "W": new Coord(0, -1)
 	};
 	
-	Bike.SYMBOL = "B";
-	
-	Bike.prototype.isOccupying = function (array) {
-	  var result = false;
-	  this.segments.forEach(function (segment) {
-	    // TODO can we use the Coord.equals method?
-	    if (segment.i === array[0] && segment.j === array[1]) {
-	      result = true;
-	    }
-	  });
-	  return result;
-	};
+	// TODO: Is this used for anything?
+	// Bike.prototype.isOccupying = function (array) {
+	//   var result = false;
+	//   this.segments.forEach(function (segment) {
+	//     if (segment.i === array[0] && segment.j === array[1]) {
+	//       result = true;
+	//     }
+	//   });
+	//   return result;
+	// };
 	
 	Bike.prototype.head = function () {
 	  return this.segments[this.segments.length - 1];
@@ -238,7 +238,7 @@
 	};
 	
 	Bike.prototype.turn = function (dir) {
-	  // avoid turning directly back
+	  // don't allow user to turn directly around in opposite direction
 	  if (Bike.DIFFS[dir].isOpposite(Bike.DIFFS[this.dir]) || this.turning) {
 	    return;
 	  } else {
@@ -246,6 +246,10 @@
 	    this.dir = dir;
 	  }
 	};
+	
+	Bike.prototype.computerMove = function () {
+	  
+	}
 	
 	module.exports = Bike;
 
@@ -260,9 +264,11 @@
 	  this.dim = dim;
 	
 	  // enter start coordinates as an array - [i, j]
-	  var player1Start = [Math.floor(dim/2), Math.floor(3*dim/4)] ;
-	  this.player1 = new Bike(this, player1Start, "W");
-	  // this.computer =
+	  var player1StartPos = [Math.floor(dim/2), Math.floor(3*dim/4)] ;
+	  this.player1 = new Bike(this, player1StartPos, "W");
+	
+	  var computerStartPos = [Math.floor(dim/2), Math.floor(dim/4)];
+	  this.computer = new Bike(this, computerStartPos, "E");
 	};
 	
 	Board.BLANK_SYMBOL = ".";
@@ -284,21 +290,6 @@
 	  return (coord.i > 0 && coord.i < this.dim) &&
 	         (coord.j > 0 && coord.j < this.dim);
 	};
-	
-	
-	// TODO remove if not being used
-	// Board.prototype.render = function () {
-	//   var grid = Board.blankGrid(this.dim);
-	//
-	//   this.player1.segments.forEach(function (segment) {
-	//     grid[segment.i][segment.j] = Bike.SYMBOL;
-	//   });
-	//
-	//   // join the grid into a big string
-	//   grid.map(function (row) {
-	//     return row.join("");
-	//   }).join("\n");
-	// };
 	
 	module.exports = Board;
 

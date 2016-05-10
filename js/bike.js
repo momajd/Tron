@@ -34,18 +34,16 @@ Bike.DIFFS = {
   "W": new Coord(0, -1)
 };
 
-Bike.SYMBOL = "B";
-
-Bike.prototype.isOccupying = function (array) {
-  var result = false;
-  this.segments.forEach(function (segment) {
-    // TODO can we use the Coord.equals method?
-    if (segment.i === array[0] && segment.j === array[1]) {
-      result = true;
-    }
-  });
-  return result;
-};
+// TODO: Is this used for anything?
+// Bike.prototype.isOccupying = function (array) {
+//   var result = false;
+//   this.segments.forEach(function (segment) {
+//     if (segment.i === array[0] && segment.j === array[1]) {
+//       result = true;
+//     }
+//   });
+//   return result;
+// };
 
 Bike.prototype.head = function () {
   return this.segments[this.segments.length - 1];
@@ -94,7 +92,7 @@ Bike.prototype.move = function () {
 };
 
 Bike.prototype.turn = function (dir) {
-  // avoid turning directly back
+  // don't allow user to turn directly around in opposite direction
   if (Bike.DIFFS[dir].isOpposite(Bike.DIFFS[this.dir]) || this.turning) {
     return;
   } else {
@@ -102,5 +100,9 @@ Bike.prototype.turn = function (dir) {
     this.dir = dir;
   }
 };
+
+Bike.prototype.computerMove = function () {
+  
+}
 
 module.exports = Bike;

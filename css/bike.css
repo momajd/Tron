@@ -14,6 +14,7 @@ body {
   font-family: sans-serif;
   text-align: center;
   font-weight: bold;
+  background: black;
 }
 
 h1 {
@@ -23,25 +24,29 @@ h1 {
 
 figure {
   display: inline-block;
-  border: 10px solid black;
+  border: 10px solid white;
 }
 
 ul {
 }
 
-ul:after {
+/*ul:after {
   content: "";
   clear: both;
   display: block;
-}
+}*/
 
 li {
   float: left;
-  width: 6px;
-  height: 6px;
-  background: black;
+  width: 8px;
+  height: 8px;
+  background: lightgray;
 }
 
-.bike {
+.player {
   background: blue;
+}
+
+.computer {
+  background: red;
 }
