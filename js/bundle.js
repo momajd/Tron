@@ -56,7 +56,7 @@
 /* 1 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var Board = __webpack_require__(2);
+	var Board = __webpack_require__(3);
 	
 	var View = function($el) {
 	  this.$el = $el;
@@ -66,7 +66,7 @@
 	
 	  this.intervalId = window.setInterval(
 	    this.step.bind(this),
-	    25 //say 100ms, change if necessary
+	    25 //milliseconds; change if necessary
 	  );
 	
 	  $(window).on("keydown", this.handleKeyEvent.bind(this));
@@ -87,21 +87,6 @@
 	  }
 	};
 	
-	View.prototype.render = function () {
-	  this.updateClasses(this.board.bike.segments, "bike");
-	};
-	
-	View.prototype.updateClasses = function (coords, className) {
-	  // TODO: review this; don't really know what's going on
-	  this.$li.filter("." + className).removeClass();
-	
-	  var self = this;
-	  coords.forEach(function(coord) {
-	    var flatCoord = (coord.i * self.board.dim) + coord.j;
-	    self.$li.eq(flatCoord).addClass(className);
-	  });
-	};
-	
 	View.prototype.setupGrid = function () {
 	  var html = "";
 	
@@ -113,7 +98,6 @@
 	    html += "</ul>";
 	  }
 	
-	// TODO review!
 	  this.$el.html(html);
 	  this.$li = this.$el.find("li");
 	};
@@ -125,6 +109,21 @@
 	  } else {
 	    // TODO message for losing
 	  }
+	};
+	
+	View.prototype.render = function () {
+	  this.updateClasses(this.board.bike.segments, "bike");
+	};
+	
+	View.prototype.updateClasses = function (coords, className) {
+	  this.$li.filter("." + className).removeClass();
+	
+	  // find the index of each coord that will be in the jQuery object
+	  var self = this;
+	  coords.forEach(function(coord) {
+	    var flatCoord = (coord.i * self.board.dim) + coord.j;
+	    self.$li.eq(flatCoord).addClass(className);
+	  });
 	};
 	
 	module.exports = View;
@@ -150,7 +149,7 @@
 	
 	Coord.prototype.isOpposite = function (coord2) {
 	  // use to prevent bike from turning around on itself
-	  if (this.i === (-1 * coord2.i) && this.j === (-1 * coord2.j));
+	  return (this.i === (-1 * coord2.i) && this.j === (-1 * coord2.j));
 	};
 	
 	var Bike = function (board) {
@@ -187,7 +186,7 @@
 	};
 	
 	Bike.prototype.isValid = function() {
-	  // TODO
+	  //
 	};
 	
 	Bike.prototype.move = function () {
@@ -208,6 +207,15 @@
 	    this.dir = dir;
 	  }
 	};
+	
+	module.exports = Bike;
+
+
+/***/ },
+/* 3 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var Bike = __webpack_require__(2);
 	
 	var Board = function (dim) {
 	  this.dim = dim;

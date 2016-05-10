@@ -39,8 +39,9 @@ li {
   float: left;
   width: 6px;
   height: 6px;
+  background: black;
 }
 
 .bike {
-  background: lightblue;
+  background: blue;
 }

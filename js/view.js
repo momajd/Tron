@@ -1,4 +1,4 @@
-var Board = require('./bike.js');
+var Board = require('./board');
 
 var View = function($el) {
   this.$el = $el;
@@ -8,7 +8,7 @@ var View = function($el) {
 
   this.intervalId = window.setInterval(
     this.step.bind(this),
-    25 //say 100ms, change if necessary
+    25 //milliseconds; change if necessary
   );
 
   $(window).on("keydown", this.handleKeyEvent.bind(this));
@@ -29,21 +29,6 @@ View.prototype.handleKeyEvent = function (event) {
   }
 };
 
-View.prototype.render = function () {
-  this.updateClasses(this.board.bike.segments, "bike");
-};
-
-View.prototype.updateClasses = function (coords, className) {
-  // TODO: review this; don't really know what's going on
-  this.$li.filter("." + className).removeClass();
-
-  var self = this;
-  coords.forEach(function(coord) {
-    var flatCoord = (coord.i * self.board.dim) + coord.j;
-    self.$li.eq(flatCoord).addClass(className);
-  });
-};
-
 View.prototype.setupGrid = function () {
   var html = "";
 
@@ -55,7 +40,6 @@ View.prototype.setupGrid = function () {
     html += "</ul>";
   }
 
-// TODO review!
   this.$el.html(html);
   this.$li = this.$el.find("li");
 };
@@ -67,6 +51,21 @@ View.prototype.step = function () {
   } else {
     // TODO message for losing
   }
+};
+
+View.prototype.render = function () {
+  this.updateClasses(this.board.bike.segments, "bike");
+};
+
+View.prototype.updateClasses = function (coords, className) {
+  this.$li.filter("." + className).removeClass();
+
+  // find the index of each coord that will be in the jQuery object
+  var self = this;
+  coords.forEach(function(coord) {
+    var flatCoord = (coord.i * self.board.dim) + coord.j;
+    self.$li.eq(flatCoord).addClass(className);
+  });
 };
 
 module.exports = View;
