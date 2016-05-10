@@ -73,7 +73,7 @@ View.prototype.updateClasses = function (coords, className) {
 // TODO
 // View.prototype.checkWinner = function() {
 //   if (!this.board.player1.alive) {
-//     alert("You Lost!!");
+//    
 //   }
 // };
 

@@ -3,7 +3,10 @@ var Bike = require("./bike");
 var Board = function (dim) {
   this.dim = dim;
 
-  this.player1 = new Bike(this);
+  // enter start coordinates as an array - [i, j]
+  var player1Start = [Math.floor(dim/2), Math.floor(3*dim/4)] ;
+  this.player1 = new Bike(this, player1Start, "W");
+  // this.computer =
 };
 
 Board.BLANK_SYMBOL = ".";

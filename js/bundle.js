@@ -131,7 +131,7 @@
 	// TODO
 	// View.prototype.checkWinner = function() {
 	//   if (!this.board.player1.alive) {
-	//     alert("You Lost!!");
+	//    
 	//   }
 	// };
 	
@@ -161,13 +161,13 @@
 	  return (this.i === (-1 * coord2.i) && this.j === (-1 * coord2.j));
 	};
 	
-	var Bike = function (board) {
-	  this.dir = "W";
+	var Bike = function (board, startPos, dir) {
+	  this.dir = dir;
 	  this.turning = false;
 	  this.board = board;
 	  this.alive = true;
 	
-	  var start = new Coord(Math.floor(board.dim/2), Math.floor(3 * board.dim/4));
+	  var start = new Coord(startPos[0], startPos[1]);
 	  this.segments = [start];
 	};
 	
@@ -259,7 +259,10 @@
 	var Board = function (dim) {
 	  this.dim = dim;
 	
-	  this.player1 = new Bike(this);
+	  // enter start coordinates as an array - [i, j]
+	  var player1Start = [Math.floor(dim/2), Math.floor(3*dim/4)] ;
+	  this.player1 = new Bike(this, player1Start, "W");
+	  // this.computer =
 	};
 	
 	Board.BLANK_SYMBOL = ".";

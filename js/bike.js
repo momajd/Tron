@@ -17,13 +17,13 @@ Coord.prototype.isOpposite = function (coord2) {
   return (this.i === (-1 * coord2.i) && this.j === (-1 * coord2.j));
 };
 
-var Bike = function (board) {
-  this.dir = "W";
+var Bike = function (board, startPos, dir) {
+  this.dir = dir;
   this.turning = false;
   this.board = board;
   this.alive = true;
 
-  var start = new Coord(Math.floor(board.dim/2), Math.floor(3 * board.dim/4));
+  var start = new Coord(startPos[0], startPos[1]);
   this.segments = [start];
 };
 
