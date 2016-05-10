@@ -140,26 +140,9 @@
 
 /***/ },
 /* 2 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
-	var Coord = function (i, j) {
-	  this.i = i;
-	  this.j = j;
-	};
-	
-	Coord.prototype.equals = function (coord2) {
-	  return (this.i === coord2.i) && (this.j === coord2.j);
-	};
-	
-	Coord.prototype.plus = function (coord2) {
-	  // use to find new position of the bike on each move
-	  return new Coord(this.i + coord2.i, this.j + coord2.j);
-	};
-	
-	Coord.prototype.isOpposite = function (coord2) {
-	  // use to prevent bike from turning around on itself
-	  return (this.i === (-1 * coord2.i) && this.j === (-1 * coord2.j));
-	};
+	var Coord = __webpack_require__(4);
 	
 	var Bike = function (board, startPos, dir) {
 	  this.dir = dir;
@@ -300,6 +283,32 @@
 	};
 	
 	module.exports = Board;
+
+
+/***/ },
+/* 4 */
+/***/ function(module, exports) {
+
+	var Coord = function (i, j) {
+	  this.i = i;
+	  this.j = j;
+	};
+	
+	Coord.prototype.equals = function (coord2) {
+	  return (this.i === coord2.i) && (this.j === coord2.j);
+	};
+	
+	Coord.prototype.plus = function (coord2) {
+	  // use to find new position of the bike on each move
+	  return new Coord(this.i + coord2.i, this.j + coord2.j);
+	};
+	
+	Coord.prototype.isOpposite = function (coord2) {
+	  // use to prevent bike from turning around on itself
+	  return (this.i === (-1 * coord2.i) && this.j === (-1 * coord2.j));
+	};
+	
+	module.exports = Coord;
 
 
 /***/ }
