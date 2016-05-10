@@ -115,13 +115,11 @@
 	};
 	
 	View.prototype.render = function () {
-	  // debugger;
 	  this.updateClasses(this.board.player1.segments, "player");
 	  this.updateClasses(this.board.computer.segments, "computer");
 	};
 	
 	View.prototype.updateClasses = function (coords, className) {
-	
 	  // find the index of each coord that will be in the jQuery object
 	  var self = this;
 	  coords.forEach(function(coord) {
@@ -168,6 +166,7 @@
 	  this.turning = false;
 	  this.board = board;
 	  this.alive = true;
+	  this.opponent = null;
 	
 	  var start = new Coord(startPos[0], startPos[1]);
 	  this.segments = [start];
@@ -180,16 +179,15 @@
 	  "W": new Coord(0, -1)
 	};
 	
-	// TODO: Is this used for anything?
-	// Bike.prototype.isOccupying = function (array) {
-	//   var result = false;
-	//   this.segments.forEach(function (segment) {
-	//     if (segment.i === array[0] && segment.j === array[1]) {
-	//       result = true;
-	//     }
-	//   });
-	//   return result;
-	// };
+	Bike.prototype.isOccupying = function (coord) {
+	  var result = false;
+	  this.segments.forEach(function (segment) {
+	    if (segment.equals(coord)) {
+	      result = true;
+	    }
+	  });
+	  return result;
+	};
 	
 	Bike.prototype.head = function () {
 	  return this.segments[this.segments.length - 1];
@@ -198,6 +196,7 @@
 	Bike.prototype.isValid = function() {
 	  var head = this.head();
 	
+	  // check boundaries on board
 	  if (!this.board.validPosition(head)) {
 	    return false;
 	  }
@@ -208,6 +207,12 @@
 	      return false;
 	    }
 	  }
+	
+	  // check if bike runs into opponent
+	  if (this.opponent.isOccupying(head)) {
+	    return false;
+	  }
+	
 	  return true;
 	};
 	
@@ -248,8 +253,8 @@
 	};
 	
 	Bike.prototype.computerMove = function () {
-	  
-	}
+	  //
+	};
 	
 	module.exports = Bike;
 
@@ -269,6 +274,9 @@
 	
 	  var computerStartPos = [Math.floor(dim/2), Math.floor(dim/4)];
 	  this.computer = new Bike(this, computerStartPos, "E");
+	
+	  this.player1.opponent = this.computer;
+	  this.computer.opponent = this.player1;
 	};
 	
 	Board.BLANK_SYMBOL = ".";

@@ -57,13 +57,11 @@ View.prototype.step = function () {
 };
 
 View.prototype.render = function () {
-  // debugger;
   this.updateClasses(this.board.player1.segments, "player");
   this.updateClasses(this.board.computer.segments, "computer");
 };
 
 View.prototype.updateClasses = function (coords, className) {
-
   // find the index of each coord that will be in the jQuery object
   var self = this;
   coords.forEach(function(coord) {

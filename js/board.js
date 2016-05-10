@@ -9,6 +9,9 @@ var Board = function (dim) {
 
   var computerStartPos = [Math.floor(dim/2), Math.floor(dim/4)];
   this.computer = new Bike(this, computerStartPos, "E");
+
+  this.player1.opponent = this.computer;
+  this.computer.opponent = this.player1;
 };
 
 Board.BLANK_SYMBOL = ".";

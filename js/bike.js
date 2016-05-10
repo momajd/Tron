@@ -22,6 +22,7 @@ var Bike = function (board, startPos, dir) {
   this.turning = false;
   this.board = board;
   this.alive = true;
+  this.opponent = null;
 
   var start = new Coord(startPos[0], startPos[1]);
   this.segments = [start];
@@ -34,16 +35,15 @@ Bike.DIFFS = {
   "W": new Coord(0, -1)
 };
 
-// TODO: Is this used for anything?
-// Bike.prototype.isOccupying = function (array) {
-//   var result = false;
-//   this.segments.forEach(function (segment) {
-//     if (segment.i === array[0] && segment.j === array[1]) {
-//       result = true;
-//     }
-//   });
-//   return result;
-// };
+Bike.prototype.isOccupying = function (coord) {
+  var result = false;
+  this.segments.forEach(function (segment) {
+    if (segment.equals(coord)) {
+      result = true;
+    }
+  });
+  return result;
+};
 
 Bike.prototype.head = function () {
   return this.segments[this.segments.length - 1];
@@ -52,6 +52,7 @@ Bike.prototype.head = function () {
 Bike.prototype.isValid = function() {
   var head = this.head();
 
+  // check boundaries on board
   if (!this.board.validPosition(head)) {
     return false;
   }
@@ -62,6 +63,12 @@ Bike.prototype.isValid = function() {
       return false;
     }
   }
+
+  // check if bike runs into opponent
+  if (this.opponent.isOccupying(head)) {
+    return false;
+  }
+
   return true;
 };
 
@@ -102,7 +109,7 @@ Bike.prototype.turn = function (dir) {
 };
 
 Bike.prototype.computerMove = function () {
-  
-}
+  //
+};
 
 module.exports = Bike;
