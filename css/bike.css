@@ -17,14 +17,19 @@ body {
   background: black;
 }
 
-h1 {
-  font-size: 60px;
-  margin: 30px;
+.tron-logo {
+  width: 400px;
+  margin: auto;
+  padding: 10px;
+}
+
+.tron-logo img {
+  max-width: 100%;
 }
 
 figure {
   display: inline-block;
-  border: 10px solid blue;
+  border: 10px solid cyan;
 }
 
 ul {
@@ -43,9 +48,13 @@ li {
 }
 
 .player {
-  background: cyan;
+  background: blue;
 }
 
 .computer {
-  background: red;
+  background: #FF4500;
+}
+
+h1 {
+  color: white;
 }

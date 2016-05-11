@@ -47,7 +47,7 @@ View.prototype.setupGrid = function () {
 View.prototype.step = function () {
   if (this.board.player1.alive && this.board.computer.alive) {
     this.board.player1.move();
-    this.board.computer.move();
+    this.board.computer.computerMove();
     this.render();
   } else {
     // TODO display winner with CSS instead of alert

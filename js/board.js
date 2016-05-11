@@ -16,8 +16,8 @@ var Board = function (dimX, dimY) {
 };
 
 Board.prototype.validPosition = function (coord) {
-  return (coord.i > 0 && coord.i < this.dimY) &&
-         (coord.j > 0 && coord.j < this.dimX);
+  return (coord.i >= 0 && coord.i < this.dimY) &&
+         (coord.j >= 0 && coord.j < this.dimX);
 };
 
 module.exports = Board;

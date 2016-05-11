@@ -32,33 +32,30 @@ Bike.prototype.head = function () {
   return this.segments[this.segments.length - 1];
 };
 
-Bike.prototype.isValid = function() {
-  var head = this.head();
-
+Bike.prototype.isValid = function(coord) {
   // check boundaries on board
-  if (!this.board.validPosition(head)) {
+  if (!this.board.validPosition(coord)) {
     return false;
   }
   // check if bike runs into itself
   for (var i = 0; i < this.segments.length - 1; i++) {
-    if (this.segments[i].equals(head)) {
+    if (this.segments[i].equals(coord)) {
       return false;
     }
   }
   // check if bike runs into opponent
-  if (this.opponent.isOccupying(head)) {
+  if (this.opponent.isOccupying(coord)) {
     return false;
   }
-
   return true;
 };
 
 Bike.prototype.move = function () {
-  var newCoord = this.head().plus(Bike.DIFFS[this.dir]);
-  this.segments.push(newCoord);
+  var nextCoord = this.head().plus(Bike.DIFFS[this.dir]);
+  this.segments.push(nextCoord);
 
   this.turning = false;
-  if (!this.isValid() ) {
+  if (!this.isValid(nextCoord) ) {
     this.alive = false;
   }
 };
@@ -73,10 +70,59 @@ Bike.prototype.turn = function (dir) {
   }
 };
 
+// for AI only
+Bike.prototype.computerChangeDir = function () {
+  var turningDirs;
+  if (this.dir === "N" || this.dir === "S") {
+    turningDirs = ["W", "E"];
+  } else {
+    turningDirs = ["N", "S"];
+  }
+
+  // check if first turning move leads to crash
+  // var firstTurn = turningDirs[0];
+  // var firstTurnCount = 0;
+  // var firstTurnCoord = this.head().plus(Bike.DIFFS[])
+  // var secondTurn = turningDirs[1];
+  // var secondTurnCount = 0;
 
 
-Bike.prototype.computerMove = function () {
-  //
 };
 
+Bike.prototype.computerMove = function () {
+  var nextCoord = this.head().plus(Bike.DIFFS[this.dir]);
+
+  if (this.isValid(nextCoord)) {
+    this.segments.push(nextCoord);
+  } else {
+    nextCoord = this.head().plus(Bike.DIFFS[this.dir]);
+    // check if the turned direction still causes collision
+    if (!this.isValid(nextCoord)) {
+      this.computerChangeDir();
+
+    }
+    this.segments.push(nextCoord);
+  }
+
+  // if still invalid the computer lost
+  if (!this.isValid(nextCoord)) {
+    this.alive = false;
+  }
+};
+
+
 module.exports = Bike;
+
+
+// Old, possibly use for easy level
+// Bike.prototype.computerChangeDir = function () {
+//   var turningDirs;
+//   if (this.dir === "N" || this.dir === "S") {
+//     turningDirs = ["W", "E"];
+//   } else {
+//     turningDirs = ["N", "S"];
+//   }
+//
+//   var randomIdx = Math.floor((Math.random()*2));
+//   this.dir = turningDirs[randomIdx];
+// };
