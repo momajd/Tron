@@ -78,7 +78,7 @@ Bike.prototype.computerChangeDir = function () {
   } else {
     turningDirs = ["N", "S"];
   }
-debugger;
+
   // decide the turn to make based on the length of the open path
   var firstDir = turningDirs[0];
   var firstDirPathCount = 0; //for counting the open spaces on this path
@@ -110,6 +110,11 @@ debugger;
 Bike.prototype.computerMove = function () {
   var nextCoord = this.head().plus(Bike.DIFFS[this.dir]);
 
+  // make a random turn once in awhile to seem more human-like
+  if (Math.random() > 0.98) {
+    this.computerChangeDir();
+  }
+
   if (this.isValid(nextCoord)) {
     this.segments.push(nextCoord);
   } else {
@@ -123,7 +128,6 @@ Bike.prototype.computerMove = function () {
     this.alive = false;
   }
 };
-
 
 module.exports = Bike;
 
