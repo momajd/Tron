@@ -8,7 +8,7 @@ var View = function($el) {
 
   this.intervalId = window.setInterval(
     this.step.bind(this),
-    25 //milliseconds; change if necessary
+    30 //milliseconds; change if necessary
   );
 
   $(window).on("keydown", this.handleKeyEvent.bind(this));
