@@ -61,7 +61,7 @@
 	var View = function($el) {
 	  this.$el = $el;
 	
-	  this.board = new Board(80);
+	  this.board = new Board(100, 70);
 	  this.setupGrid();
 	
 	  this.intervalId = window.setInterval(
@@ -90,9 +90,9 @@
 	View.prototype.setupGrid = function () {
 	  var html = "";
 	
-	  for (var i = 0; i < this.board.dim; i++) {
+	  for (var i = 0; i < this.board.dimY; i++) {
 	    html += "<ul>";
-	    for (var j = 0; j < this.board.dim; j++) {
+	    for (var j = 0; j < this.board.dimX; j++) {
 	      html += "<li></li>";
 	    }
 	    html += "</ul>";
@@ -123,7 +123,7 @@
 	  // find the index of each coord that will be in the jQuery object
 	  var self = this;
 	  coords.forEach(function(coord) {
-	    var flatCoord = (coord.i * self.board.dim) + coord.j;
+	    var flatCoord = (coord.i * self.board.dimX) + coord.j;
 	    self.$li.eq(flatCoord).addClass(className);
 	  });
 	};
@@ -144,14 +144,15 @@
 
 	var Bike = __webpack_require__(3);
 	
-	var Board = function (dim) {
-	  this.dim = dim;
+	var Board = function (dimX, dimY) {
+	  this.dimX = dimX;
+	  this.dimY = dimY;
 	
 	  // enter start coordinates as an array - [i, j]
-	  var player1StartPos = [Math.floor(dim/2), Math.floor(3*dim/4)] ;
+	  var player1StartPos = [Math.floor(dimY/2), Math.floor(3*dimX/4)] ;
 	  this.player1 = new Bike(this, player1StartPos, "W");
 	
-	  var computerStartPos = [Math.floor(dim/2), Math.floor(dim/4)];
+	  var computerStartPos = [Math.floor(dimY/2), Math.floor(dimX/4)];
 	  this.computer = new Bike(this, computerStartPos, "E");
 	
 	  this.player1.opponent = this.computer;
@@ -159,8 +160,8 @@
 	};
 	
 	Board.prototype.validPosition = function (coord) {
-	  return (coord.i > 0 && coord.i < this.dim) &&
-	         (coord.j > 0 && coord.j < this.dim);
+	  return (coord.i > 0 && coord.i < this.dimY) &&
+	         (coord.j > 0 && coord.j < this.dimX);
 	};
 	
 	module.exports = Board;

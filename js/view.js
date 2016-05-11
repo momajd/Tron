@@ -3,7 +3,7 @@ var Board = require('./board');
 var View = function($el) {
   this.$el = $el;
 
-  this.board = new Board(80);
+  this.board = new Board(100, 70);
   this.setupGrid();
 
   this.intervalId = window.setInterval(
@@ -32,9 +32,9 @@ View.prototype.handleKeyEvent = function (event) {
 View.prototype.setupGrid = function () {
   var html = "";
 
-  for (var i = 0; i < this.board.dim; i++) {
+  for (var i = 0; i < this.board.dimY; i++) {
     html += "<ul>";
-    for (var j = 0; j < this.board.dim; j++) {
+    for (var j = 0; j < this.board.dimX; j++) {
       html += "<li></li>";
     }
     html += "</ul>";
@@ -65,7 +65,7 @@ View.prototype.updateClasses = function (coords, className) {
   // find the index of each coord that will be in the jQuery object
   var self = this;
   coords.forEach(function(coord) {
-    var flatCoord = (coord.i * self.board.dim) + coord.j;
+    var flatCoord = (coord.i * self.board.dimX) + coord.j;
     self.$li.eq(flatCoord).addClass(className);
   });
 };
