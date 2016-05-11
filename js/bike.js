@@ -39,14 +39,12 @@ Bike.prototype.isValid = function() {
   if (!this.board.validPosition(head)) {
     return false;
   }
-
   // check if bike runs into itself
   for (var i = 0; i < this.segments.length - 1; i++) {
     if (this.segments[i].equals(head)) {
       return false;
     }
   }
-
   // check if bike runs into opponent
   if (this.opponent.isOccupying(head)) {
     return false;
@@ -54,22 +52,6 @@ Bike.prototype.isValid = function() {
 
   return true;
 };
-
-// USE WHEN CHECKING COLLISIONS WITH OTHER PLAYER
-// Bike.prototype.segmentsContain = function (coord) {
-//   var contains = false;
-//   this.segments.forEach(function(segment) {
-//     if (segment.equals(coord) ) {
-//       contains = true;
-//     }
-//   });
-//   return contains;
-// };
-
-// Bike.prototype.checkCollision = function() {
-//   var head = this.head();
-//   TODO
-// };
 
 Bike.prototype.move = function () {
   var newCoord = this.head().plus(Bike.DIFFS[this.dir]);
@@ -90,6 +72,8 @@ Bike.prototype.turn = function (dir) {
     this.dir = dir;
   }
 };
+
+
 
 Bike.prototype.computerMove = function () {
   //
