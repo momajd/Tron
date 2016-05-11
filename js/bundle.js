@@ -251,15 +251,33 @@
 	  } else {
 	    turningDirs = ["N", "S"];
 	  }
+	debugger;
+	  // decide the turn to make based on the length of the open path
+	  var firstDir = turningDirs[0];
+	  var firstDirPathCount = 0; //for counting the open spaces on this path
+	  var firstDirCoord = this.head().plus(Bike.DIFFS[firstDir]);
 	
-	  // check if first turning move leads to crash
-	  // var firstTurn = turningDirs[0];
-	  // var firstTurnCount = 0;
-	  // var firstTurnCoord = this.head().plus(Bike.DIFFS[])
-	  // var secondTurn = turningDirs[1];
-	  // var secondTurnCount = 0;
+	  while (this.isValid(firstDirCoord)) {
+	    firstDirPathCount += 1;
+	    // go to next coord and see if it is free
+	    firstDirCoord = firstDirCoord.plus(Bike.DIFFS[firstDir]);
+	  }
 	
+	  var secondDir = turningDirs[1];
+	  var secondDirPathCount = 0;
+	  var secondDirCoord = this.head().plus(Bike.DIFFS[secondDir]);
 	
+	  while (this.isValid(secondDirCoord)) {
+	    secondDirPathCount += 1;
+	    secondDirCoord = secondDirCoord.plus(Bike.DIFFS[secondDir]);
+	  }
+	
+	  // go with the direction that has the clearest path
+	  if (firstDirPathCount > secondDirPathCount) {
+	    this.dir = firstDir;
+	  } else {
+	    this.dir = secondDir;
+	  }
 	};
 	
 	Bike.prototype.computerMove = function () {
@@ -268,12 +286,8 @@
 	  if (this.isValid(nextCoord)) {
 	    this.segments.push(nextCoord);
 	  } else {
+	    this.computerChangeDir();
 	    nextCoord = this.head().plus(Bike.DIFFS[this.dir]);
-	    // check if the turned direction still causes collision
-	    if (!this.isValid(nextCoord)) {
-	      this.computerChangeDir();
-	
-	    }
 	    this.segments.push(nextCoord);
 	  }
 	
