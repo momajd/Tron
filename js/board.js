@@ -14,21 +14,6 @@ var Board = function (dim) {
   this.computer.opponent = this.player1;
 };
 
-Board.BLANK_SYMBOL = ".";
-
-Board.prototype.blankGrid = function (dim) {
-  var grid = [];
-
-  for (var i = 0; i < dim; i++) {
-    var row = [];
-    for (var j = 0; j < dim; j++) {
-      row.push(Board.BLANK_SYMBOL);
-    }
-    grid.push(row);
-  }
-  grid.push(row);
-};
-
 Board.prototype.validPosition = function (coord) {
   return (coord.i > 0 && coord.i < this.dim) &&
          (coord.j > 0 && coord.j < this.dim);
