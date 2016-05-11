@@ -1,4 +1,3 @@
-var Board = require('./board');
 
 var View = function($el) {
   this.$el = $el;
@@ -77,4 +76,5 @@ View.prototype.updateClasses = function (coords, className) {
 //   }
 // };
 
-module.exports = View;
+// so linter doesn't yell at us
+var Board = Board || {};

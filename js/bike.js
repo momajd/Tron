@@ -1,5 +1,3 @@
-var Coord = require('./coord');
-
 var Bike = function (board, startPos, dir) {
   this.dir = dir;
   this.turning = false;
@@ -129,18 +127,5 @@ Bike.prototype.computerMove = function () {
   }
 };
 
-module.exports = Bike;
-
-
-// Old, possibly use for easy level
-// Bike.prototype.computerChangeDir = function () {
-//   var turningDirs;
-//   if (this.dir === "N" || this.dir === "S") {
-//     turningDirs = ["W", "E"];
-//   } else {
-//     turningDirs = ["N", "S"];
-//   }
-//
-//   var randomIdx = Math.floor((Math.random()*2));
-//   this.dir = turningDirs[randomIdx];
-// };
+// so linter doesn't yell at us
+var Coord = Coord || {};

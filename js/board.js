@@ -1,5 +1,3 @@
-var Bike = require("./bike");
-
 var Board = function (dimX, dimY) {
   this.dimX = dimX;
   this.dimY = dimY;
@@ -20,4 +18,6 @@ Board.prototype.validPosition = function (coord) {
          (coord.j >= 0 && coord.j < this.dimX);
 };
 
-module.exports = Board;
+
+// so linter doesn't yell at us
+var Bike = Bike || {};

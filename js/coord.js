@@ -16,5 +16,3 @@ Coord.prototype.isOpposite = function (coord2) {
   // use to prevent bike from turning around on itself
   return (this.i === (-1 * coord2.i) && this.j === (-1 * coord2.j));
 };
-
-module.exports = Coord;
