@@ -51,9 +51,8 @@ View.prototype.step = function () {
     this.board.computer.computerMove();
     this.render();
   } else {
-    // TODO display winner with CSS instead of alert
-    // alert("come on man");
     window.clearInterval(this.intervalId);
+    $('.end-display').show();
   }
 };
 
@@ -71,12 +70,13 @@ View.prototype.updateClasses = function (coords, className) {
   });
 };
 
-// TODO
-// View.prototype.checkWinner = function() {
-//   if (!this.board.player1.alive) {
-//
-//   }
-// };
+View.prototype.checkWinner = function() {
+  if (!this.board.player1.alive) {
+    return "Computer";
+  } else {
+    return "Player 1";
+  }
+};
 
 // so linter doesn't yell at us
 var Board = Board || {};

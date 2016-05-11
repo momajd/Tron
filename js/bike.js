@@ -109,7 +109,7 @@ Bike.prototype.computerMove = function () {
   var nextCoord = this.head().plus(Bike.DIFFS[this.dir]);
 
   // make a random turn once in awhile to seem more human-like
-  if (Math.random() > 0.99) {
+  if (Math.random() > 0.98) {
     this.computerChangeDir();
   }
 

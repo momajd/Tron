@@ -4,30 +4,47 @@
     <meta charset="utf-8">
     <title>Tron</title>
     <link rel="stylesheet" type="text/css" href="./css/bike.css">
+    <link href='https://fonts.googleapis.com/css?family=Orbitron|Audiowide' rel='stylesheet' type='text/css'>
   </head>
 
   <body>
     <audio controls>
       <source src="./music/robot_rock.mp3" type="audio/mpeg">
     </audio>
-
     <div class="tron-logo">
       <img src="https://upload.wikimedia.org/wikipedia/commons/b/bb/TRON.png" />
     </div>
-    <figure class="tron-game"></figure>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
 
+    <div class="intro-outro">
+      <h1 class="start-display" id="start">START</h1>
+      <h1 class="end-display" id="replay">PLAY AGAIN</h1>
+    </div>
+
+    <figure class="tron-game">
+    </figure>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
     <script src="./js/coord.js"></script>
     <script src="./js/bike.js"></script>
     <script src="./js/board.js"></script>
     <script src="./js/view.js"></script>
 
     <script>
-      $(function () {
+      $(".end-display").hide();
+
+      $("#start").on("click", function() {
+        $("#start").hide();
         var rootEl = $('.tron-game');
         var view = new View(rootEl);
         view.startGame();
-      });
+      })
+
+      $("#replay").on("click", function() {
+        $("#replay").hide();
+        var rootEl = $('.tron-game');
+        var view = new View(rootEl);
+        view.startGame();
+      })
     </script>
 
   </body>
