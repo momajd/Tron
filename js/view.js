@@ -4,7 +4,9 @@ var View = function($el) {
 
   this.board = new Board(100, 70);
   this.setupGrid();
+};
 
+View.prototype.startGame = function () {
   this.intervalId = window.setInterval(
     this.step.bind(this),
     30 //milliseconds; change if necessary
