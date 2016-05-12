@@ -14,6 +14,7 @@ body {
   font-family: sans-serif;
   text-align: center;
   font-weight: bold;
+  color: white;
   background: black;
 }
 
@@ -74,7 +75,7 @@ h1 {
   z-index: 2;
   left: 0;
   right: 0;
-  top: 360px;
+  top: 290px;
 }
 
 #start, #replay {
@@ -91,4 +92,17 @@ h1 {
 #computer-win, #player1-win {
   padding-bottom: 30px;
   font-size: 40px;
+}
+
+#instructions {
+  padding-bottom: 34px;
+  width: 675px;
+  font-size: 22px;
+  font-family: 'Audiowide', cursive;
+}
+
+h1#instructions {
+  text-decoration: underline;
+  padding-bottom: 10px;
+  font-size: 32px;
 }
