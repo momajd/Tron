@@ -52,7 +52,13 @@ View.prototype.step = function () {
     this.render();
   } else {
     window.clearInterval(this.intervalId);
-    $('.end-display').show();
+    $('#replay').show();
+
+    if (this.checkWinner() === "Player 1") {
+      $('#player1-win').show();
+    } else {
+      $('#computer-win').show();
+    }
   }
 };
 

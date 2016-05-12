@@ -17,6 +17,8 @@
 
     <div class="intro-outro">
       <h1 class="start-display" id="start">START</h1>
+      <h1 class="end-display" id="player1-win">You win!</h1>
+      <h1 class="end-display" id="computer-win">Computer wins!</h1>
       <h1 class="end-display" id="replay">PLAY AGAIN</h1>
     </div>
 
@@ -40,7 +42,7 @@
       })
 
       $("#replay").on("click", function() {
-        $("#replay").hide();
+        $(".end-display").hide();
         var rootEl = $('.tron-game');
         var view = new View(rootEl);
         view.startGame();

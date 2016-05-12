@@ -31,7 +31,7 @@ figure {
   display: inline-block;
   min-width: 800px;
   min-height: 560px;
-  max-width: 820px;
+  max-width: 850px;
   max-height: 580px;
   border: 10px solid #5EC4F2;
 }
@@ -68,7 +68,8 @@ h1 {
 
 .intro-outro {
   display: flex;
-  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   position: absolute;
   z-index: 2;
   left: 0;
@@ -84,4 +85,10 @@ h1 {
   padding-left: 30px;
   padding-right: 30px;
   cursor: pointer;
+  background-color: black;
+}
+
+#computer-win, #player1-win {
+  padding-bottom: 30px;
+  font-size: 40px;
 }
