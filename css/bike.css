@@ -30,21 +30,13 @@ body {
 
 figure {
   display: inline-block;
+  /*will need to modify these if the size of the board changes*/
   min-width: 800px;
   min-height: 560px;
   max-width: 850px;
   max-height: 580px;
   border: 10px solid #5EC4F2;
 }
-
-ul {
-}
-
-/*ul:after {
-  content: "";
-  clear: both;
-  display: block;
-}*/
 
 li {
   float: left;
