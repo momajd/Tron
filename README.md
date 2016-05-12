@@ -1,6 +1,6 @@
 # Tron
 
-## [Live Link][link]
+##[Live Link][link]
 
 [link]: http://momajd.github.io/Tron/
 
@@ -11,7 +11,7 @@ Remake of the classic arcade game that involves maneuvering a 'light cycle' in a
 
 - Object-oriented - classes are made for `bike`, `board`, `coord`, and `view`.
 
-- The `view` renders the board and listens for key events in the browser. The board grid is constructed using `ul` and `li` tags. Each time the board is rendered, the CSS class selector of each `li` item is updated to reflect the position of the bikes.
+- The `view` renders the board and listens for key events in the browser. The board grid is constructed using `ul` and `li` tags. Each time the board is rendered, the CSS class selector of each `li` item is updated using jQuery to reflect the position of the bikes.
 
 - The `board` class takes dimensions as arguments and checks if coordinates are within its boundaries.
 
@@ -20,8 +20,9 @@ Remake of the classic arcade game that involves maneuvering a 'light cycle' in a
 ## Features
 
 - Collision detection
+
 - Simple AI that makes turning decisions based on the number of available steps in each direction. The computer is programmed to make an occasional random turn to avoid 'wall-hugging'.
 
 ## Future Features
 
-- [ ] Improve AI by using a more advanced algorithm that is based on searching areas (instead of linear paths) for open spaces. 
+- [ ] Improve AI by using a more advanced algorithm that is based on searching areas (instead of linear paths).
