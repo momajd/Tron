@@ -69,6 +69,7 @@ Bike.prototype.turn = function (dir) {
 };
 
 // for AI only
+
 Bike.prototype.computerChangeDir = function () {
   var turningDirs;
   if (this.dir === "N" || this.dir === "S") {
