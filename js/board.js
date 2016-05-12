@@ -3,10 +3,10 @@ var Board = function (dimX, dimY) {
   this.dimY = dimY;
 
   // enter start coordinates as an array - [i, j]
-  var player1StartPos = [Math.floor(dimY/2), Math.floor(3*dimX/4)] ;
+  var player1StartPos = [Math.floor(dimY/2), Math.floor(7*dimX/8)] ;
   this.player1 = new Bike(this, player1StartPos, "W");
 
-  var computerStartPos = [Math.floor(dimY/2), Math.floor(dimX/4)];
+  var computerStartPos = [Math.floor(dimY/2), Math.floor(dimX/8)];
   this.computer = new Bike(this, computerStartPos, "E");
 
   this.player1.opponent = this.computer;
