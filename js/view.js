@@ -68,11 +68,11 @@ View.prototype.render = function () {
 };
 
 View.prototype.updateClasses = function (coords, className) {
-  // find the index of each coord that will be in the jQuery object
+  // find the index of each coord that will be in the jQuery array of li elements
   var self = this;
   coords.forEach(function(coord) {
-    var flatCoord = (coord.i * self.board.dimX) + coord.j;
-    self.$li.eq(flatCoord).addClass(className);
+    var coordIdx = (coord.i * self.board.dimX) + coord.j;
+    self.$li.eq(coordIdx).addClass(className);
   });
 };
 
