@@ -6,11 +6,11 @@ var Board = function (dimX, dimY) {
   var player1StartPos = [Math.floor(dimY/2), Math.floor(7*dimX/8)] ;
   this.player1 = new Bike(this, player1StartPos, "W");
 
-  var computerStartPos = [Math.floor(dimY/2), Math.floor(dimX/8)];
-  this.computer = new Bike(this, computerStartPos, "E");
+  var player2StartPos = [Math.floor(dimY/2), Math.floor(dimX/8)];
+  this.player2 = new Bike(this, player2StartPos, "E");
 
-  this.player1.opponent = this.computer;
-  this.computer.opponent = this.player1;
+  this.player1.opponent = this.player2;
+  this.player2.opponent = this.player1;
 };
 
 Board.prototype.validPosition = function (coord) {

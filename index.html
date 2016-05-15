@@ -44,7 +44,7 @@
       $("#start").on("click", function() {
         $(".start-display").hide();
         var rootEl = $('.tron-game');
-        var view = new View(rootEl);
+        var view = new View(rootEl, 2); //TODO HARD ENTER FOR NOW
         view.startGame();
       })
 
