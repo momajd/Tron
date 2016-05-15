@@ -66,11 +66,19 @@ View.prototype.step = function () {
   } else {
     window.clearInterval(this.intervalId);
     $('#replay').show();
-    // TODO need case for Player 2 Win
-    if (this.checkWinner() === "Player 1") {
-      $('#you-win').show();
+
+    if (this.players === 2) {
+      if (this.checkWinner() === "Player 1") {
+        $('#player1-win').show();
+      } else {
+        $('#player2-win').show();
+      }
     } else {
-      $('#computer-win').show();
+      if (this.checkWinner() === "Player 1") {
+        $('#you-win').show();
+      } else {
+        $('#computer-win').show();
+      }
     }
   }
 };
@@ -91,7 +99,7 @@ View.prototype.updateClasses = function (coords, className) {
 
 View.prototype.checkWinner = function() {
   if (!this.board.player1.alive) {
-    return "Computer";
+    return "Player 2";
   } else {
     return "Player 1";
   }
