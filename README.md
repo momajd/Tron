@@ -7,6 +7,9 @@
 Remake of the classic arcade game that involves maneuvering a 'light cycle' in an arena against an opponent. Tron was built using Javascript, jQuery, HTML, and CSS. Game can be played against a computer or with two players.
 
 ![Intro](/docs/intro.png)
+
+
+
 ![End](/docs/game_end.png)
 
 ## Game Architecture and Logic
