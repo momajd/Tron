@@ -24,9 +24,18 @@
         Navigate your light cycle by the arrow keys.
       </div>
       <h1 class="start-display" id="start">START</h1>
-      <h1 class="start-display" id="two-player">START</h1>
-      <h1 class="end-display" id="player1-win">You win!</h1>
+      <div class="start-display" id="instructions" style="padding-top: 60px">
+        Have a <span style="color: #FF4500;">Frenemy</span>?
+      </div>
+      <h1 class="start-display" id="two-player">2 PLAYERS</h1>
+      <div class="start-display" id="instructions">
+        (<span style="color: #FF4500; font-size: 18px;">Player 2</span> uses WASD)
+      </div>
+
+      <h1 class="end-display" id="you-win">You win!</h1>
       <h1 class="end-display" id="computer-win">Computer wins!</h1>
+      <h1 class="end-display" id="player1-win">Player 1 wins!</h1>
+      <h1 class="end-display" id="player2-win">Player 2 wins!</h1>
       <h1 class="end-display" id="replay">PLAY AGAIN</h1>
     </div>
 
@@ -42,6 +51,7 @@
     <script>
       $(".end-display").hide();
       var rootEl = $('.tron-game');
+      var view;
 
       $("#start").on("click", function() {
         $(".start-display").hide();
@@ -50,15 +60,18 @@
       })
 
       $("#two-player").on("click", function() {
-        $("start-display").hide();
-        var view = new View(rootEl, 2);
+        $(".start-display").hide();
+        // Replay needs access to the # of players after the game has
+        // ended. Is there a better way to do this?
+        window.players = 2;
+        var view = new View(rootEl, window.players);
         view.startGame();
       })
 
       $("#replay").on("click", function() {
         $(".end-display").hide();
-        var view = new View(rootEl);
-        view.reset();
+        var view = new View(rootEl, window.players);
+        view.startGame();
       })
     </script>
 

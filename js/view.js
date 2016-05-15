@@ -15,12 +15,6 @@ View.prototype.startGame = function () {
   $(window).on("keydown", this.handleKeyEvent.bind(this));
 };
 
-View.prototype.reset = function () {
-  this.board = new Board(100, 70);
-  this.setupGrid();
-  this.startGame();
-};
-
 View.KEYS1 = {
   38: "N",
   39: "E",
@@ -74,7 +68,7 @@ View.prototype.step = function () {
     $('#replay').show();
     // TODO need case for Player 2 Win
     if (this.checkWinner() === "Player 1") {
-      $('#player1-win').show();
+      $('#you-win').show();
     } else {
       $('#computer-win').show();
     }
