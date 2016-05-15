@@ -4,8 +4,10 @@
 
 [link]: http://momajd.github.io/Tron/
 
-Remake of the classic arcade game that involves maneuvering a 'light cycle' in an arena against an opponent. Tron was built using Javascript, jQuery, HTML, and CSS.
+Remake of the classic arcade game that involves maneuvering a 'light cycle' in an arena against an opponent. Tron was built using Javascript, jQuery, HTML, and CSS. Game can be played against a computer or with two players.
 
+![Intro](/docs/intro.png)
+![End](/docs/game_end.png)
 
 ## Game Architecture and Logic
 
@@ -21,12 +23,12 @@ Remake of the classic arcade game that involves maneuvering a 'light cycle' in a
 
 - Collision detection
 
+- Two-player option
+
 - Simple AI that makes turning decisions based on the number of available steps in each direction. The computer is programmed to make an occasional random turn to avoid 'wall-hugging'.
 
 ## Future Features
 
 - [ ] Improve AI by using a more advanced algorithm that is based on searching areas (instead of linear paths). Maybe something similar to Flood Fill
-
-- [ ] Add two-player option
 
 - [ ] Add websocket for multi-player games over server
