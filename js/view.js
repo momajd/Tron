@@ -2,7 +2,7 @@
 var View = function($el, players) {
   this.$el = $el;
   this.players = players;
-  this.board = new Board(100, 70, players);
+  this.board = new Board(100, 70);
   this.setupGrid();
 };
 
@@ -13,6 +13,12 @@ View.prototype.startGame = function () {
   );
 
   $(window).on("keydown", this.handleKeyEvent.bind(this));
+};
+
+View.prototype.reset = function () {
+  this.board = new Board(100, 70);
+  this.setupGrid();
+  this.startGame();
 };
 
 View.KEYS1 = {
@@ -60,7 +66,7 @@ View.prototype.step = function () {
     if (this.players === 2) {
       this.board.player2.move();
     } else {
-      this.board.computer.computerMove();
+      this.board.player2.computerMove();
     }
     this.render();
   } else {

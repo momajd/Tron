@@ -24,6 +24,7 @@
         Navigate your light cycle by the arrow keys.
       </div>
       <h1 class="start-display" id="start">START</h1>
+      <h1 class="start-display" id="two-player">START</h1>
       <h1 class="end-display" id="player1-win">You win!</h1>
       <h1 class="end-display" id="computer-win">Computer wins!</h1>
       <h1 class="end-display" id="replay">PLAY AGAIN</h1>
@@ -40,19 +41,24 @@
 
     <script>
       $(".end-display").hide();
+      var rootEl = $('.tron-game');
 
       $("#start").on("click", function() {
         $(".start-display").hide();
-        var rootEl = $('.tron-game');
-        var view = new View(rootEl, 2); //TODO HARD ENTER FOR NOW
+        var view = new View(rootEl);
+        view.startGame();
+      })
+
+      $("#two-player").on("click", function() {
+        $("start-display").hide();
+        var view = new View(rootEl, 2);
         view.startGame();
       })
 
       $("#replay").on("click", function() {
         $(".end-display").hide();
-        var rootEl = $('.tron-game');
         var view = new View(rootEl);
-        view.startGame();
+        view.reset();
       })
     </script>
 
