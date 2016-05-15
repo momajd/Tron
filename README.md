@@ -10,6 +10,8 @@ Remake of the classic arcade game that involves maneuvering a 'light cycle' in a
 
 
 
+
+
 ![End](/docs/game_end.png)
 
 ## Game Architecture and Logic
