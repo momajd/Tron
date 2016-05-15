@@ -26,3 +26,7 @@ Remake of the classic arcade game that involves maneuvering a 'light cycle' in a
 ## Future Features
 
 - [ ] Improve AI by using a more advanced algorithm that is based on searching areas (instead of linear paths). Maybe something similar to Flood Fill
+
+- [ ] Add two-player option
+
+- [ ] Add websocket for multi-player games over server
