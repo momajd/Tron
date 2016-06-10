@@ -32,6 +32,8 @@ Remake of the classic arcade game that involves maneuvering a 'light cycle' in a
 
 - Simple AI that makes turning decisions based on the number of available steps in each direction. The computer is programmed to make an occasional random turn to avoid 'wall-hugging'.
 
+- User can change difficulty of the computer player. The easiest computer makes lots of random moves which makes it likely to crash. The hardest computer makes no random moves.
+
 ## Future Features
 
 - [ ] Improve AI by using a more advanced algorithm that is based on searching areas (instead of linear paths). Maybe something similar to Flood Fill

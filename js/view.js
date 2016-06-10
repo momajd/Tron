@@ -3,13 +3,15 @@ var View = function($el, players) {
   this.$el = $el;
   this.players = players;
   this.board = new Board(100, 70);
+  // speed depends on the difficulty setting
+  this.speed = window.speed ? window.speed : 35;
   this.setupGrid();
 };
 
 View.prototype.startGame = function () {
   this.intervalId = window.setInterval(
     this.step.bind(this),
-    30 //milliseconds; change if necessary
+    this.speed
   );
 
   $(window).on("keydown", this.handleKeyEvent.bind(this));
@@ -49,16 +51,19 @@ View.prototype.handleDifficultyChange = function (event) {
     $('.medium').css('color', 'white');
     $('.hard').css('color', 'white');
     window.difficulty = 1;
+    window.speed = 35;
   } else if (target === "medium") {
     $('.easy').css('color', 'white');
     $('.medium').css('color', 'red');
     $('.hard').css('color', 'white');
     window.difficulty = 2;
+    window.speed = 30;
   } else if (target === "hard") {
     $('.easy').css('color', 'white');
     $('.medium').css('color', 'white');
     $('.hard').css('color', 'red');
     window.difficulty = 3;
+    window.speed = 25;
   }
 };
 

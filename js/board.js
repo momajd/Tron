@@ -12,6 +12,7 @@ var Board = function (dimX, dimY) {
   this.player1.opponent = this.player2;
   this.player2.opponent = this.player1;
 
+  // take the difficulty that was defined on a previous game if one exists
   this.difficulty = window.difficulty ? window.difficulty : 1;
 };
 

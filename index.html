@@ -60,18 +60,20 @@
 
     <script>
       $(".end-display").hide();
+      $(".easy, .medium, .hard").hide();
       var rootEl = $('.tron-game');
       var view;
 
       $("#start").on("click", function() {
         $(".start-display").hide();
+        $(".easy, .medium, .hard").show();
         var view = new View(rootEl);
         view.startGame();
       })
 
       $("#two-player").on("click", function() {
         $(".start-display").hide();
-        $(".easy, .medium, .hard").hide();
+
         // Replay needs access to the # of players after the game has
         // ended. Is there a better way to do this?
         window.players = 2;

@@ -114,10 +114,12 @@ h1#instructions {
 .difficulty {
   position: relative;
   width: 200px;
+  margin-right: 10px;
 }
 
 .rightspace {
   width: 200px;
+  margin-left: 10px;
 }
 
 .medium, .hard {
@@ -129,7 +131,7 @@ h1#instructions {
   padding-right: 30px;
   cursor: pointer;
   background-color: black;
-  margin-bottom: 8px;
+  margin-bottom: 12px;
 }
 
 .easy {
@@ -142,5 +144,5 @@ h1#instructions {
   padding-right: 30px;
   cursor: pointer;
   background-color: black;
-  margin-bottom: 8px;
+  margin-bottom: 12px;
 }
