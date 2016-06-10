@@ -11,6 +11,8 @@ var Board = function (dimX, dimY) {
 
   this.player1.opponent = this.player2;
   this.player2.opponent = this.player1;
+
+  this.difficulty = window.difficulty ? window.difficulty : 1;
 };
 
 Board.prototype.validPosition = function (coord) {

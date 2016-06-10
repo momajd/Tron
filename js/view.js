@@ -13,6 +13,8 @@ View.prototype.startGame = function () {
   );
 
   $(window).on("keydown", this.handleKeyEvent.bind(this));
+
+  $(window).on("click", this.handleDifficultyChange.bind(this));
 };
 
 View.KEYS1 = {
@@ -36,6 +38,27 @@ View.prototype.handleKeyEvent = function (event) {
     this.board.player2.turn(View.KEYS2[event.keyCode]);
   } else {
     // ignore other keys, or maybe have pause button?
+  }
+};
+
+View.prototype.handleDifficultyChange = function (event) {
+  // define the difficulty on the window so it persists through each game
+  var target = event.target.className;
+  if (target === "easy") {
+    $('.easy').css('color', 'red');
+    $('.medium').css('color', 'white');
+    $('.hard').css('color', 'white');
+    window.difficulty = 1;
+  } else if (target === "medium") {
+    $('.easy').css('color', 'white');
+    $('.medium').css('color', 'red');
+    $('.hard').css('color', 'white');
+    window.difficulty = 2;
+  } else if (target === "hard") {
+    $('.easy').css('color', 'white');
+    $('.medium').css('color', 'white');
+    $('.hard').css('color', 'red');
+    window.difficulty = 3;
   }
 };
 

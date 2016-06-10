@@ -107,9 +107,10 @@ Bike.prototype.computerChangeDir = function () {
 
 Bike.prototype.computerMove = function () {
   var nextCoord = this.head().plus(Bike.DIFFS[this.dir]);
-
+  var print = this.board.difficulty.toString();
+  console.log(print);
   // make a random turn once in awhile to avoid wall hugging
-  if (Math.random() > 0.98) {
+  if (Math.random() > this.computerTurnFrequency() ) {
     this.computerChangeDir();
   }
 
@@ -124,6 +125,17 @@ Bike.prototype.computerMove = function () {
   // if still invalid the computer lost
   if (!this.isValid(nextCoord)) {
     this.alive = false;
+  }
+};
+
+Bike.prototype.computerTurnFrequency = function () {
+  // Make the easy difficulty turn more frequently
+  if (this.board.difficulty === 1) {
+    return 0.95;
+  } else if (this.board.difficulty === 2) {
+    return 0.98;
+  } else {
+    return 1.0; //hardest will make no turns and just hug the wall
   }
 };
 
