@@ -107,8 +107,7 @@ Bike.prototype.computerChangeDir = function () {
 
 Bike.prototype.computerMove = function () {
   var nextCoord = this.head().plus(Bike.DIFFS[this.dir]);
-  var print = this.board.difficulty.toString();
-  console.log(print);
+
   // make a random turn once in awhile to avoid wall hugging
   if (Math.random() > this.computerTurnFrequency() ) {
     this.computerChangeDir();
