@@ -11,7 +11,8 @@ ul {
 }
 
 body {
-  font-family: sans-serif;
+  /*font-family: sans-serif;*/
+  font-family: 'Orbitron', sans-serif;
   text-align: center;
   font-weight: bold;
   color: white;
@@ -111,7 +112,7 @@ h1#instructions {
   justify-content: center;
 }
 
-.difficulty {
+.leftspace {
   position: relative;
   width: 200px;
   margin-right: 10px;
@@ -145,4 +146,28 @@ h1#instructions {
   cursor: pointer;
   background-color: black;
   margin-bottom: 12px;
+}
+
+.left-header {
+  text-decoration: underline;
+  margin-bottom: 14px;
+}
+
+.score {
+  font-size: 26px;
+  margin-bottom: 60px
+}
+
+.blue-wins {
+  font-size: 26px;
+  font-family: 'Orbitron', sans-serif;
+  color: blue;
+  margin-right: 10px;
+}
+
+.red-wins {
+  font-size: 26px;
+  font-family: 'Orbitron', sans-serif;
+  color: #FF4500;
+  margin-left: 10px;
 }

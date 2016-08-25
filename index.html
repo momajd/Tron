@@ -40,10 +40,19 @@
     </div>
 
     <div class="display">
-      <div class="difficulty">
-        <h1 class="easy">Easy</h1>
-        <h1 class="medium">Medium</h1>
-        <h1 class="hard">Hard</h1>
+      <div class="leftspace">
+        <div class="score">
+          <h1 class="left-header"> Wins </h1>
+          <span class="blue-wins">0</span>  -
+          <span class="red-wins">0</span>
+        </div>
+
+        <div class="difficulty">
+          <h1 class="left-header"> Difficulty </h1>
+          <h1 class="easy">Easy</h1>
+          <h1 class="medium">Medium</h1>
+          <h1 class="hard">Hard</h1>
+        </div>
       </div>
 
       <figure class="tron-game">
@@ -63,6 +72,7 @@
       $(".easy, .medium, .hard").hide();
       var rootEl = $('.tron-game');
       var view;
+      window.wins = {blue: 0, red: 0}
 
       $("#start").on("click", function() {
         $(".start-display").hide();

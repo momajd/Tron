@@ -98,17 +98,27 @@ View.prototype.step = function () {
     if (this.players === 2) {
       if (this.checkWinner() === "Player 1") {
         $('#player1-win').show();
+        window.wins.blue++;
       } else {
         $('#player2-win').show();
+        window.wins.red++;
       }
     } else {
       if (this.checkWinner() === "Player 1") {
         $('#you-win').show();
+        window.wins.blue++;
       } else {
         $('#computer-win').show();
+        window.wins.red++;
       }
     }
+    this.updateScore();
   }
+};
+
+View.prototype.updateScore = function() {
+  $('.red-wins').text(window.wins.red);
+  $('.blue-wins').text(window.wins.blue);
 };
 
 View.prototype.render = function () {
