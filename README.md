@@ -1,6 +1,6 @@
 # Tron
 
-##[Live Link][link]
+## [Live Link][link]
 
 [link]: http://momajd.github.io/Tron/
 
